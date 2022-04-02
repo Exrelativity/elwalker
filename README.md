@@ -5,7 +5,6 @@ Elwalker API is a Node.js backend starter for SaaS startups written in TypeScrip
 
 Elwalker API is build to work with [Elwalker UI](https://github.com/##/##), the frontend PWA starter for SaaS startups.
 
-**⚠️ v3 BETA WARNING:** The `master` branch and all 3.x releases are currently in beta. For production, use v1.x instead.
 
 ## ⭐ Features
 
