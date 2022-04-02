@@ -88,11 +88,6 @@ If you've used the "Use this template" option on GitHub, you might have to force
 
 **[View frontend demo →](https://##-demo.o15y.com)**
 
-## 🏗️ Built with Elwalker
-
-- [Oswald Labs Platform](https://github.com/OswaldLabsOpenSource/platform-v3)
-- [Speakup Developer](https://github.com/speakupnl/staart)
-- [**Add your Elwalker-based project**](https://github.com/staart/api/edit/master/README.md)
 
 ## [🏁 Elwalker Ecosystem](https://##.js.org)
 
