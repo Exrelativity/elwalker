@@ -62,10 +62,8 @@ Elwalker API is build to work with [Elwalker UI](https://github.com/##/##), the 
 To update your installation of Elwalker, run the following:
 
 ```bash
-staart update api
+npm update
 ```
-
-If you've used the "Use this template" option on GitHub, you might have to force pull from `staart/api` the first time since the histories wouldn't match. You can use the flag `--allow-unrelated-histories` in this case.
 
 ## 💻 Docs
 
