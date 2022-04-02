@@ -1,0 +1,381 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongoDb"]
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String?
+  image       String[]
+  category    String?
+  address     String
+  description String?
+  status      Status   @default(ACTIVE)
+  price       Int
+  userId      String   @db.ObjectId
+  User        User     @relation("userProduct", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId], name: "userId")
+  @@index([createdAt], name: "createdAt")
+  @@index([name], name: "name")
+  @@index([status], name: "status")
+}
+
+model Order {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  totalPrice Int
+  products   String[]
+  status     Status   @default(ACTIVE)
+  userId     String   @db.ObjectId
+  User       User     @relation("userOrder", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([createdAt], name: "createdAt")
+  
+}
+
+model Booking {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  totalPrice Int
+  inventorys String[]
+  status     Status   @default(ACTIVE)
+  userId     String   @db.ObjectId
+  User       User     @relation("userBooking", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([createdAt], name: "createdAt")
+}
+
+model Inventory {
+  id                   String   @id @default(auto()) @map("_id") @db.ObjectId
+  name                 String
+  city                 String
+  region               String
+  timezone             String
+  status               Status   @default(ACTIVE)
+  countryCode          String
+  phone                String
+  address              String
+  sourcelatitude       Float
+  sourcelongitude      Float
+  destinationLatitude  Float
+  destinationLongitude Float
+  source               String
+  destination          String
+  category             String
+  image                String[]
+  description          String
+  price                String   @db.ObjectId
+  userId               String   @db.ObjectId
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  User                 User     @relation("userInventory", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([userId], name: "userId")
+  @@index([city], name: "city")
+  @@index([category], name: "category")
+  @@index([source], name: "source")
+  @@index([destination], name: "destination")
+  @@index([name], name: "name")
+  @@index([status], name: "status")
+}
+
+model User {
+  id                   String               @id @default(auto()) @map("_id") @db.ObjectId
+  checkLocationOnLogin Boolean              @default(false)
+  countryCode          String               @default("us")
+  createdAt            DateTime             @default(now())
+  gender               Gender               @default(UNKNOWN)
+  name                 String
+  notificationEmail    NotificationEmail    @default(ACCOUNT)
+  password             String?
+  prefersLanguage      String               @default("en-us")
+  prefersColorScheme   PrefersColorScheme   @default(NO_PREFERENCE)
+  prefersReducedMotion PrefersReducedMotion @default(NO_PREFERENCE)
+  prefersEmailId       String               @db.ObjectId
+  profilePictureUrl    String               @default("https://unavatar.now.sh/fallback.png")
+  role                 UserRole             @default(USER)
+  timezone             String               @default("America/Los_Angeles")
+  twoFactorMethod      MfaMethod            @default(NONE)
+  twoFactorPhone       String?
+  twoFactorSecret      String?
+  attributes           Json?
+  updatedAt            DateTime             @updatedAt
+  active               Boolean              @default(true)
+  prefersEmail         Email?               @relation("userPrefersEmail", fields: [prefersEmailId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  apiKeys              ApiKey[]             @relation("userApiKey")
+  approvedSubnets      ApprovedSubnet[]     @relation("userApprovedSubnet")
+  auditLogs            AuditLog[]           @relation("userAuditLog")
+  backupCodes          BackupCode[]         @relation("userBackupCode")
+  emails               Email[]              @relation("userEmail")
+  identities           Identity[]           @relation("userIdentity")
+  memberships          Membership[]         @relation("userMembership")
+  sessions             Session[]            @relation("userSession")
+  Product   Product[]   @relation("userProduct")
+  Order     Order[]     @relation("userOrder")
+  Booking   Booking[]   @relation("userBooking")
+  Inventory Inventory[] @relation("userInventory")
+
+  @@index([prefersEmailId], name: "prefersEmailId")
+}
+
+model Group {
+  id                String       @id @default(auto()) @map("_id") @db.ObjectId
+  autoJoinDomain    Boolean      @default(false)
+  createdAt         DateTime     @default(now())
+  forceTwoFactor    Boolean      @default(false)
+  ipRestrictions    String?
+  name              String
+  onlyAllowDomain   Boolean      @default(false)
+  profilePictureUrl String       @default("https://unavatar.now.sh/fallback.png")
+  attributes        Json?
+  updatedAt         DateTime     @updatedAt
+  parentId          String       @db.ObjectId
+  parent            Group?       @relation("groupSubgroups", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  apikeys           ApiKey[]     @relation("groupApiKey")
+  auditLogs         AuditLog[]   @relation("groupAuditLog")
+  domains           Domain[]     @relation("groupDomain")
+  subgroups         Group[]      @relation("groupSubgroups")
+  memberships       Membership[] @relation("groupMembership")
+  webhooks          Webhook[]    @relation("groupWebhook")
+
+  @@index([parentId], name: "parentId")
+}
+
+model Email {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt  DateTime @default(now())
+  email      String   @unique
+  emailSafe  String   @unique
+  isVerified Boolean  @default(false)
+  updatedAt  DateTime @updatedAt
+  userId     String   @db.ObjectId
+  user       User     @relation("userEmail", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users      User[]   @relation("userPrefersEmail")
+
+  @@index([userId], name: "userId")
+}
+
+model ApiKey {
+  id                   String     @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt            DateTime   @default(now())
+  description          String?
+  ipRestrictions       Json?
+  apiKey               String     @unique
+  name                 String?
+  groupId              String     @db.ObjectId
+  referrerRestrictions Json?
+  scopes               Json?
+  updatedAt            DateTime   @updatedAt
+  userId               String     @db.ObjectId
+  auditLogs            AuditLog[] @relation("apiKeyAuditLog")
+  group                Group?     @relation("groupApiKey", fields: [groupId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  user                 User?      @relation("userApiKey", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([groupId], name: "groupId")
+  @@index([userId], name: "userId")
+}
+
+model ApprovedSubnet {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt   DateTime @default(now())
+  subnet      String
+  city        String?
+  region      String?
+  timezone    String?
+  countryCode String?
+  updatedAt   DateTime @updatedAt
+  userId      String   @db.ObjectId
+  user        User     @relation("userApprovedSubnet", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([userId], name: "userId")
+}
+
+model BackupCode {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  code      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  isUsed    Boolean  @default(false)
+  userId    String   @db.ObjectId
+  user      User     @relation("userBackupCode", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([userId], name: "userId")
+}
+
+model CouponCode {
+  id               String    @id @default(auto()) @map("_id") @db.ObjectId
+  code             String
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  expiresAt        DateTime?
+  maxUses          Int       @default(1000)
+  usedCount        Int       @default(0)
+  teamRestrictions String?
+  amount           Float     @default(0.00)
+  currency         String
+  description      String?
+}
+
+model Domain {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt        DateTime @default(now())
+  domain           String
+  isVerified       Boolean  @default(false)
+  groupId          String   @db.ObjectId
+  updatedAt        DateTime @updatedAt
+  verificationCode String
+  group            Group    @relation("groupDomain", fields: [groupId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([groupId], name: "groupId")
+}
+
+model Identity {
+  id        String       @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime     @default(now())
+  loginName String
+  type      IdentityType
+  updatedAt DateTime     @updatedAt
+  userId    String       @db.ObjectId
+  user      User         @relation("userIdentity", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([userId], name: "userId")
+}
+
+model Membership {
+  id        String         @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime       @default(now())
+  groupId   String         @db.ObjectId
+  role      MembershipRole @default(MEMBER)
+  updatedAt DateTime       @updatedAt
+  userId    String         @db.ObjectId
+  group     Group          @relation("groupMembership", fields: [groupId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  user      User           @relation("userMembership", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([groupId], name: "groupId")
+  @@index([userId], name: "userId")
+}
+
+model Session {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt       DateTime @default(now())
+  ipAddress       String
+  token           String
+  updatedAt       DateTime @updatedAt
+  userAgent       String?
+  city            String?
+  region          String?
+  timezone        String?
+  countryCode     String?
+  browser         String?
+  operatingSystem String?
+  userId          String   @db.ObjectId
+  user            User     @relation("userSession", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([userId], name: "userId")
+}
+
+model Webhook {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  contentType String    @default("application/json")
+  createdAt   DateTime  @default(now())
+  event       String
+  isActive    Boolean   @default(false)
+  lastFiredAt DateTime?
+  groupId     String    @db.ObjectId
+  secret      String?
+  updatedAt   DateTime  @updatedAt
+  url         String
+  group       Group     @relation("groupWebhook", fields: [groupId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([groupId], name: "groupId")
+}
+
+model AuditLog {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt       DateTime @default(now())
+  event           String
+  rawEvent        String
+  groupId         String   @db.ObjectId
+  updatedAt       DateTime @updatedAt
+  userId          String   @db.ObjectId
+  apiKeyId        String   @db.ObjectId
+  ipAddress       String?
+  userAgent       String?
+  city            String?
+  region          String?
+  timezone        String?
+  countryCode     String?
+  browser         String?
+  operatingSystem String?
+  group           Group?   @relation("groupAuditLog", fields: [groupId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  user            User?    @relation("userAuditLog", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  apiKey          ApiKey?  @relation("apiKeyAuditLog", fields: [apiKeyId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([apiKeyId], name: "apiKeyId")
+  @@index([groupId], name: "groupId")
+  @@index([userId], name: "userId")
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  NONBINARY
+  UNKNOWN
+}
+
+enum Status {
+  ACTIVE
+  PROCESSING
+  INACTIVE
+}
+
+enum NotificationEmail {
+  ACCOUNT
+  UPDATES
+  PROMOTIONS
+}
+
+enum PrefersColorScheme {
+  NO_PREFERENCE
+  LIGHT
+  DARK
+}
+
+enum PrefersReducedMotion {
+  NO_PREFERENCE
+  REDUCE
+}
+
+enum UserRole {
+  SUDO
+  USER
+}
+
+enum MfaMethod {
+  NONE
+  SMS
+  TOTP
+  EMAIL
+}
+
+enum MembershipRole {
+  OWNER
+  ADMIN
+  MEMBER
+}
+
+enum IdentityType {
+  GOOGLE
+  APPLE
+  SLACK
+}

@@ -1,0 +1,1 @@
+export const JWT_AUDIT_LOG_DATA = 'JWT_AUDIT_LOG_DATA';
