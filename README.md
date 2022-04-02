@@ -1,6 +1,6 @@
-[![Staart API](https://raw.githubusercontent.com/staart/staart.js.org/master/assets/svg/api.svg?sanitize=true)](https://staart.js.org/api)
+[![Elwalker API Derived from Staart API](https://raw.githubusercontent.com/staart/staart.js.org/master/assets/svg/api.svg?sanitize=true)](https://staart.js.org/api)
 
-Staart API is a Node.js backend starter for SaaS startups written in TypeScript. It has all the features you need to build a SaaS product, like user management and authentication, billing, organizations, GDPR tools, API keys, rate limiting, superadmin impersonation, and more.
+Elwalker API is a Node.js backend starter for SaaS startups written in TypeScript. It has all the features you need to build a SaaS product, like user management and authentication, billing, organizations, GDPR tools, API keys, rate limiting, superadmin impersonation, and more.
 
 |           | Status                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -8,7 +8,7 @@ Staart API is a Node.js backend starter for SaaS startups written in TypeScript.
 | PRs       | [![Pull Request Labeler](https://github.com/koj-co/template/workflows/Pull%20Request%20Labeler/badge.svg)](https://github.com/koj-co/template/actions?query=workflow%3A%22Pull+Request+Labeler%22) [![PR Generator CI](https://github.com/koj-co/template/workflows/PR%20Generator%20CI/badge.svg)](https://github.com/koj-co/template/actions?query=workflow%3A%22PR+Generator+CI%22) [![Merge PRs](https://github.com/koj-co/template/workflows/Merge%20PRs/badge.svg)](https://github.com/koj-co/template/actions?query=workflow%3A%22Merge+PRs%22)                                                               |
 | Community | [![Contributors](https://img.shields.io/github/contributors/staart/api.svg)](https://github.com/staart/api/graphs/contributors) [![GitHub](https://img.shields.io/github/license/staart/api.svg)](https://github.com/staart/api/blob/master/LICENSE) ![Type definitions](https://img.shields.io/badge/types-TypeScript-blue.svg) [![npm package version](https://img.shields.io/npm/v/@staart/api)](https://www.npmjs.com/package/@staart/api) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) |
 
-Staart API is build to work with [Staart UI](https://github.com/staart/ui), the frontend PWA starter for SaaS startups.
+Elwalker API is build to work with [Elwalker UI](https://github.com/staart/ui), the frontend PWA starter for SaaS startups.
 
 **⚠️ v3 BETA WARNING:** The `master` branch and all 3.x releases are currently in beta. For production, use v1.x instead.
 
@@ -20,7 +20,7 @@ Staart API is build to work with [Staart UI](https://github.com/staart/ui), the 
 - JWT-powered single-use coupon codes
 - Redis-powered queues for outbound emails and logs
 - Cloud agnostic, no longer specific to AWS
-- Staart scripts for building and deploying
+- Elwalker scripts for building and deploying
 - Async JSON response and smart controller injection
 
 ### 🔐 Security
@@ -62,9 +62,9 @@ Staart API is build to work with [Staart UI](https://github.com/staart/ui), the 
 1. Generate your `app.ts` file using `staart controllers`
 1. Build with `staart build` and deploy with `staart launch`
 
-### Updating Staart
+### Updating Elwalker
 
-To update your installation of Staart, run the following:
+To update your installation of Elwalker, run the following:
 
 ```bash
 staart update api
@@ -77,7 +77,7 @@ If you've used the "Use this template" option on GitHub, you might have to force
 - [Getting started](https://staart.js.org/api/getting-started.html)
 - [Setting up environment variables](https://staart.js.org/api/setting-up-environment-variables.html)
 - [Creating a controller](https://staart.js.org/api/creating-a-controller.html)
-- [Updating Staart](https://staart.js.org/api/update.html)
+- [Updating Elwalker](https://staart.js.org/api/update.html)
 - [Response headers](https://staart.js.org/api/response-headers.html)
 - [Throwing errors](https://staart.js.org/api/throwing-errors.html)
 - [Authorization](https://staart.js.org/api/authorization.html)
@@ -93,28 +93,28 @@ If you've used the "Use this template" option on GitHub, you might have to force
 
 **[View frontend demo →](https://staart-demo.o15y.com)**
 
-## 🏗️ Built with Staart
+## 🏗️ Built with Elwalker
 
 - [Oswald Labs Platform](https://github.com/OswaldLabsOpenSource/platform-v3)
 - [Speakup Developer](https://github.com/speakupnl/staart)
-- [**Add your Staart-based project**](https://github.com/staart/api/edit/master/README.md)
+- [**Add your Elwalker-based project**](https://github.com/staart/api/edit/master/README.md)
 
-## [🏁 Staart Ecosystem](https://staart.js.org)
+## [🏁 Elwalker Ecosystem](https://staart.js.org)
 
-The Staart ecosystem consists of open-source projects to build your SaaS startup, written in TypeScript.
+The Elwalker ecosystem consists of open-source projects to build your SaaS startup, written in TypeScript.
 
 | Package                                                  |                                         |                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | -------------------------------------------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [🛠️ Staart API](https://github.com/staart/api)           | Node.js backend with RESTful APIs       | [![Build status](https://img.shields.io/circleci/build/github/staart/api)](https://circleci.com/gh/staart/api) [![Docs](https://img.shields.io/endpoint?url=https%3A%2F%2Fstaart.js.org%2Fshield-schema%2Fapi.json)](https://staart.js.org/api) [![npm package version](https://img.shields.io/npm/v/@staart/api)](https://www.npmjs.com/package/@staart/api)                                                         |
-| [🌐 Staart UI](https://github.com/staart/ui)             | Frontend Vue.js Progressive Web App     | [![Build status](https://img.shields.io/circleci/build/github/staart/ui)](https://circleci.com/gh/staart/ui) [![Docs](https://img.shields.io/endpoint?url=https%3A%2F%2Fstaart.js.org%2Fshield-schema%2Fui.json)](https://staart.js.org/ui) [![npm package version](https://img.shields.io/npm/v/@staart/ui)](https://www.npmjs.com/package/@staart/ui)                                                               |
-| [📑 Staart Site](https://github.com/staart/site)         | Static site generator for docs/helpdesk | [![Build status](https://img.shields.io/circleci/build/github/staart/site)](https://circleci.com/gh/staart/site) [![Docs](https://img.shields.io/endpoint?url=https%3A%2F%2Fstaart.js.org%2Fshield-schema%2Fsite.json)](https://staart.js.org/site) [![npm package version](https://img.shields.io/npm/v/@staart/site)](https://www.npmjs.com/package/@staart/site)                                                   |
-| [📱 Staart Native](https://github.com/staart/native)     | React Native app for Android and iOS    | [![Build status](https://img.shields.io/circleci/build/github/staart/native)](https://circleci.com/gh/staart/native) [![Docs](https://img.shields.io/endpoint?url=https%3A%2F%2Fstaart.js.org%2Fshield-schema%2Fnative.json)](https://staart.js.org/native) [![npm package version](https://img.shields.io/npm/v/@staart/native)](https://www.npmjs.com/package/@staart/native)                                       |
-| [🎨 Staart.css](https://github.com/staart/css)           | Sass/CSS framework and utilities        | [![Build status](https://img.shields.io/circleci/build/github/staart/css)](https://circleci.com/gh/staart/css) [![Docs](https://img.shields.io/endpoint?url=https%3A%2F%2Fstaart.js.org%2Fshield-schema%2Fcss.json)](https://staart.js.org/css) [![npm package version](https://img.shields.io/npm/v/@staart/css)](https://www.npmjs.com/package/@staart/css)                                                         |
-| [📦 Staart Packages](https://github.com/staart/packages) | Helper functions and utility packages   | [![Build status](https://img.shields.io/circleci/build/github/staart/packages)](https://circleci.com/gh/staart/packages) [![Custom badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fservices.anandchowdhary.now.sh%2Fapi%2Fgithub-files%3Frepo%3Dstaart%2Fpackages%26path%3Dpackages%26label%3Dstaart%26message%3D%25241%2524%2520package%2524S%2524%26color%3Dblueviolet)](https://www.npmjs.com/org/staart) |
+| [🛠️ Elwalker API](https://github.com/staart/api)           | Node.js backend with RESTful APIs       | [![Build status](https://img.shields.io/circleci/build/github/staart/api)](https://circleci.com/gh/staart/api) [![Docs](https://img.shields.io/endpoint?url=https%3A%2F%2Fstaart.js.org%2Fshield-schema%2Fapi.json)](https://staart.js.org/api) [![npm package version](https://img.shields.io/npm/v/@staart/api)](https://www.npmjs.com/package/@staart/api)                                                         |
+| [🌐 Elwalker UI](https://github.com/staart/ui)             | Frontend Vue.js Progressive Web App     | [![Build status](https://img.shields.io/circleci/build/github/staart/ui)](https://circleci.com/gh/staart/ui) [![Docs](https://img.shields.io/endpoint?url=https%3A%2F%2Fstaart.js.org%2Fshield-schema%2Fui.json)](https://staart.js.org/ui) [![npm package version](https://img.shields.io/npm/v/@staart/ui)](https://www.npmjs.com/package/@staart/ui)                                                               |
+| [📑 Elwalker Site](https://github.com/staart/site)         | Static site generator for docs/helpdesk | [![Build status](https://img.shields.io/circleci/build/github/staart/site)](https://circleci.com/gh/staart/site) [![Docs](https://img.shields.io/endpoint?url=https%3A%2F%2Fstaart.js.org%2Fshield-schema%2Fsite.json)](https://staart.js.org/site) [![npm package version](https://img.shields.io/npm/v/@staart/site)](https://www.npmjs.com/package/@staart/site)                                                   |
+| [📱 Elwalker Native](https://github.com/staart/native)     | React Native app for Android and iOS    | [![Build status](https://img.shields.io/circleci/build/github/staart/native)](https://circleci.com/gh/staart/native) [![Docs](https://img.shields.io/endpoint?url=https%3A%2F%2Fstaart.js.org%2Fshield-schema%2Fnative.json)](https://staart.js.org/native) [![npm package version](https://img.shields.io/npm/v/@staart/native)](https://www.npmjs.com/package/@staart/native)                                       |
+| [🎨 Elwalker.css](https://github.com/staart/css)           | Sass/CSS framework and utilities        | [![Build status](https://img.shields.io/circleci/build/github/staart/css)](https://circleci.com/gh/staart/css) [![Docs](https://img.shields.io/endpoint?url=https%3A%2F%2Fstaart.js.org%2Fshield-schema%2Fcss.json)](https://staart.js.org/css) [![npm package version](https://img.shields.io/npm/v/@staart/css)](https://www.npmjs.com/package/@staart/css)                                                         |
+| [📦 Elwalker Packages](https://github.com/staart/packages) | Helper functions and utility packages   | [![Build status](https://img.shields.io/circleci/build/github/staart/packages)](https://circleci.com/gh/staart/packages) [![Custom badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fservices.anandchowdhary.now.sh%2Fapi%2Fgithub-files%3Frepo%3Dstaart%2Fpackages%26path%3Dpackages%26label%3Dstaart%26message%3D%25241%2524%2520package%2524S%2524%26color%3Dblueviolet)](https://www.npmjs.com/org/staart) |
 
 ## 💝 Sponsors
 
-The development of Staart projects is supported by these wonderful companies. [Find us on OpenCollective](https://opencollective.com/staart)
+The development of Elwalker projects is supported by these wonderful companies. [Find us on OpenCollective](https://opencollective.com/staart)
 
 <!-- prettier-ignore -->
 <table>
